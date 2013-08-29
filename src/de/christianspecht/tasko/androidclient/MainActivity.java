@@ -1,8 +1,10 @@
 package de.christianspecht.tasko.androidclient;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -19,5 +21,26 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch(item.getItemId()) {
+			
+			case R.id.action_newtask:
+				Toast.makeText(this, getString(R.string.action_newtask) , Toast.LENGTH_SHORT).show();
+				return true;
+				
+			case R.id.action_settings :
+				Toast.makeText(this, getString(R.string.action_settings), Toast.LENGTH_SHORT).show();
+				return true;
+				
+			default:
+				return super.onOptionsItemSelected(item);	
+				
+		}
+	}
+
     
 }
