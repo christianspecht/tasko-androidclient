@@ -3,6 +3,7 @@
 
     <string name="app_name">Tasko</string>
     <string name="action_settings">Settings</string>
+    <string name="action_newtask">New Task</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>
