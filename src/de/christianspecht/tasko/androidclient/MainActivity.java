@@ -32,9 +32,12 @@ public class MainActivity extends Activity {
 				Toast.makeText(this, getString(R.string.action_newtask) , Toast.LENGTH_SHORT).show();
 				return true;
 				
-			case R.id.action_settings :
+			case R.id.action_settings:
 				Toast.makeText(this, getString(R.string.action_settings), Toast.LENGTH_SHORT).show();
 				return true;
+				
+			case R.id.action_about:
+				Toast.makeText(this, getString(R.string.action_about), Toast.LENGTH_SHORT).show();
 				
 			default:
 				return super.onOptionsItemSelected(item);	
