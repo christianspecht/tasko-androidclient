@@ -1,6 +1,7 @@
 package de.christianspecht.tasko.androidclient;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,7 +38,9 @@ public class MainActivity extends Activity {
 				return true;
 				
 			case R.id.action_about:
-				Toast.makeText(this, getString(R.string.action_about), Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(this, AboutActivity.class);
+				startActivity(intent);
+				return true;
 				
 			default:
 				return super.onOptionsItemSelected(item);	

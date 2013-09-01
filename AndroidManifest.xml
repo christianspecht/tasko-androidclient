@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="de.christianspecht.tasko.androidclient.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName="de.christianspecht.tasko.androidclient.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.christianspecht.tasko.androidclient.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
