@@ -19,17 +19,14 @@ public class AboutActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		// display app name and version number
-		String version="";
+		// display version number
 		try {
 			PackageInfo info = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
-			version = info.versionName;
+			TextView view = (TextView)findViewById(R.id.about_text_version);
+			view.setText(getString(R.string.about_version) + " " + info.versionName);
 		} catch (NameNotFoundException e) {
 			// do nothing - in this case, we just don't have a version number to display
 		}
-		
-		TextView view = (TextView)findViewById(R.id.about_text_appname);
-		view.setText(getString(R.string.app_name_client) + " "  + version);
 	}
 
 	/**

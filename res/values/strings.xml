@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">Tasko</string>
-    <string name="app_name_client">Tasko Android Client</string>
+    <string name="about_appname">Tasko Android Client</string>
+    <string name="about_version">Version</string>
     <string name="action_settings">Settings</string>
     <string name="action_newtask">New Task</string>
     <string name="action_about">About Tasko</string>
