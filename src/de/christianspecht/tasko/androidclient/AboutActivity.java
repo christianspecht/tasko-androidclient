@@ -3,8 +3,11 @@ package de.christianspecht.tasko.androidclient;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 
 public class AboutActivity extends Activity {
@@ -15,6 +18,18 @@ public class AboutActivity extends Activity {
 		setContentView(R.layout.activity_about);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		// display app name and version number
+		String version="";
+		try {
+			PackageInfo info = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
+			version = info.versionName;
+		} catch (NameNotFoundException e) {
+			// do nothing - in this case, we just don't have a version number to display
+		}
+		
+		TextView view = (TextView)findViewById(R.id.about_text_appname);
+		view.setText(getString(R.string.app_name_client) + " "  + version);
 	}
 
 	/**
