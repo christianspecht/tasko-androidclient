@@ -21,5 +21,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <ImageView
+        android:id="@+id/about_image_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="@string/about_copyright" />
+
 
 </LinearLayout>
