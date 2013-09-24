@@ -35,6 +35,17 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:text="@string/about_copyright" />
-
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="@string/about_urltext" />
+    
+    <TextView
+        android:autoLink="web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:text="@string/about_urllink" />
 
 </LinearLayout>

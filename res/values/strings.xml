@@ -4,6 +4,8 @@
     <string name="app_name">Tasko</string>
     <string name="about_appname">Tasko Android Client</string>
     <string name="about_copyright">© Christian Specht 2013</string>
+    <string name="about_urltext">For more information, visit:</string>
+    <string name="about_urllink">http://christianspecht.de/tasko</string>
     <string name="about_version">Version</string>
     <string name="action_settings">Settings</string>
     <string name="action_newtask">New Task</string>
