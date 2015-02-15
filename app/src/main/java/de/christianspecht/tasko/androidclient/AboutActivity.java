@@ -10,6 +10,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 
+import java.util.Calendar;
+
 public class AboutActivity extends Activity {
 
 	@Override
@@ -18,7 +20,13 @@ public class AboutActivity extends Activity {
 		setContentView(R.layout.activity_about);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
+
+		// set copyright text to current year
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		String copyrightText = String.format(getString(R.string.about_copyright), year);
+		TextView copyrightView =(TextView)findViewById(R.id.about_text_copyright);
+		copyrightView.setText(copyrightText);
+
 		// display version number
 		try {
 			PackageInfo info = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
