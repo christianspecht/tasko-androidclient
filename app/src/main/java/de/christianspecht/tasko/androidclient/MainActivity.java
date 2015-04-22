@@ -9,10 +9,21 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	public void LoadTasks() {
+		Toast.makeText(this, "load tasks here", Toast.LENGTH_SHORT).show();
+	}
+
+	private static boolean StartupFinished;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		if (!this.StartupFinished) {
+			this.LoadTasks();
+			this.StartupFinished = true;
+		}
 	}
 
 
