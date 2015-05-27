@@ -1,6 +1,7 @@
 package de.christianspecht.tasko.androidclient;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,16 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+
+		// try to load auth token from settings
+		Prefs prefs = new Prefs(this);
+
+		// if there's a token in the settings, directly go to main screen
+		// if not, let the user login on this screen
+		if (!prefs.getAuthToken().equals("")) {
+			Intent mainIntent = new Intent(this, MainActivity.class);
+			startActivity(mainIntent);
+		}
 	}
 
 
