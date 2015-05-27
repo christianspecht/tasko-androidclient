@@ -16,6 +16,8 @@
     <string name="pref_serverurl">Server URL</string>
     <string name="pref_serverurl_default">https://tasko.apphb.com</string>
     <string name="pref_serverurl_summary">URL to your installation of the Tasko server</string>
-    <string name="login_label">Login</string>
+    <string name="login_label">Log In</string>
+    <string name="login_user">User Name</string>
+    <string name="login_password">Password</string>
 
 </resources>
