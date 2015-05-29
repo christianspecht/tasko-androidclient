@@ -1,7 +1,6 @@
 package de.christianspecht.tasko.androidclient;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,26 +36,13 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
-		switch(item.getItemId()) {
-			
-			case R.id.action_newtask:
-				Toast.makeText(this, getString(R.string.action_newtask) , Toast.LENGTH_SHORT).show();
-				return true;
-				
-			case R.id.action_settings:
-				Intent settingsIntent = new Intent(this, SettingsActivity.class);
-				startActivity(settingsIntent);
-				return true;
-				
-			case R.id.action_about:
-				Intent intent = new Intent(this, AboutActivity.class);
-				startActivity(intent);
-				return true;
-				
-			default:
-				return super.onOptionsItemSelected(item);	
-				
+
+		MenuOpener menu = new MenuOpener(this);
+
+		if (menu.Open(item.getItemId())){
+			return true;
+		} else {
+			return super.onOptionsItemSelected(item);
 		}
 	}
 
