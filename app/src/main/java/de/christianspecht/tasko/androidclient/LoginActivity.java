@@ -40,11 +40,12 @@ public class LoginActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 
-		//noinspection SimplifiableIfStatement
-		if (id == R.id.action_settings) {
-			return true;
-		}
+		MenuOpener menu = new MenuOpener(this);
 
-		return super.onOptionsItemSelected(item);
+		if (menu.Open(id)) {
+			return true;
+		} else {
+			return super.onOptionsItemSelected(item);
+		}
 	}
 }
