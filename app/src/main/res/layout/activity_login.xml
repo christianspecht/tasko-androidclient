@@ -10,22 +10,23 @@
                 tools:context="de.christianspecht.tasko.androidclient.LoginActivity">
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/login_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login_user"/>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login_password"
         android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/login_label"/>
+        android:hint="@string/login_label"
+        android:onClick="LoginUser"/>
 
 </LinearLayout>

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class LoginActivity extends Activity {
@@ -47,5 +49,19 @@ public class LoginActivity extends Activity {
 		} else {
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	public void LoginUser(View view) {
+
+		EditText userText = (EditText)findViewById(R.id.login_username);
+		String user = userText.getText().toString();
+
+		EditText passText = (EditText)findViewById(R.id.login_password);
+		String pass = passText.getText().toString();
+
+		Authenticator auth = new Authenticator(this);
+		String token = auth.Authenticate(user, pass);
+
+		// Todo: save token
 	}
 }
