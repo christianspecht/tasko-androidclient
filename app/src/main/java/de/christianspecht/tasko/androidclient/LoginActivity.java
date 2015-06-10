@@ -28,6 +28,7 @@ public class LoginActivity extends Activity {
 		if (!this.prefs.getAuthToken().equals("")) {
 			Intent mainIntent = new Intent(this, MainActivity.class);
 			startActivity(mainIntent);
+			finish();
 		}
 	}
 
