@@ -22,6 +22,11 @@ public class Authenticator {
 	 */
 	public String Authenticate(String user, String password) {
 		Toast.makeText(this.context, "Login " + user, Toast.LENGTH_SHORT).show();
+
+		if (user.equals("test")){
+			return "token";
+		}
+
 		return "";
 	}
 }
