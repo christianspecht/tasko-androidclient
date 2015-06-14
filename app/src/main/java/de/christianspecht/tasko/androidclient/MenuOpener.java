@@ -2,7 +2,6 @@ package de.christianspecht.tasko.androidclient;
 
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
 /**
  * Open menu items
@@ -10,9 +9,11 @@ import android.widget.Toast;
 public class MenuOpener {
 
 	private Context context;
+	private MessageText message;
 
-	public MenuOpener(Context context){
+	public MenuOpener(Context context, MessageText message){
 		this.context = context;
+		this.message = message;
 	}
 
 	/**
@@ -26,7 +27,7 @@ public class MenuOpener {
 
 			case R.id.action_newtask:
 
-				Toast.makeText(this.context, this.context.getString(R.string.action_newtask), Toast.LENGTH_SHORT).show();
+				this.message.Show("New Task");
 				return true;
 
 			case R.id.action_settings:

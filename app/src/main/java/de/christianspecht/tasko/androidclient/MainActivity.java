@@ -4,25 +4,27 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	public void LoadTasks() {
-		Toast.makeText(this, "load tasks here", Toast.LENGTH_SHORT).show();
-	}
-
 	private static boolean StartupFinished;
+	private MessageText message;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		this.message = new MessageText(this);
+
 		if (!this.StartupFinished) {
 			this.LoadTasks();
 			this.StartupFinished = true;
 		}
+	}
+
+	public void LoadTasks() {
+		this.message.Show("load tasks here");
 	}
 
 
@@ -37,7 +39,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		MenuOpener menu = new MenuOpener(this);
+		MenuOpener menu = new MenuOpener(this, this.message);
 
 		if (menu.Open(item.getItemId())){
 			return true;

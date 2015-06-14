@@ -48,7 +48,7 @@ public class LoginActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 
-		MenuOpener menu = new MenuOpener(this);
+		MenuOpener menu = new MenuOpener(this, this.message);
 
 		if (menu.Open(id)) {
 			return true;
