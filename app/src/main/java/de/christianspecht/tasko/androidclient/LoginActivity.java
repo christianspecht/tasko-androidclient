@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class LoginActivity extends Activity {
@@ -69,6 +70,9 @@ public class LoginActivity extends Activity {
 		if (!token.equals("")) {
 			this.prefs.setAuthToken(token);
 			this.TryToStartMainActivity();
+		} else {
+			String message = String.format(getString(R.string.login_failed), user);
+			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 		}
 	}
 }

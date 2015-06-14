@@ -1,7 +1,6 @@
 package de.christianspecht.tasko.androidclient;
 
 import android.content.Context;
-import android.widget.Toast;
 
 /**
  * Helper class for authentication
@@ -21,7 +20,6 @@ public class Authenticator {
 	 * @return The authentication token, if successful
 	 */
 	public String Authenticate(String user, String password) {
-		Toast.makeText(this.context, "Login " + user, Toast.LENGTH_SHORT).show();
 
 		if (user.equals("test")){
 			return "token";
