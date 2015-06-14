@@ -7,18 +7,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 
 public class LoginActivity extends Activity {
 
 	private Prefs prefs;
+	private MessageText message;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		this.prefs = new Prefs(this);
+		this.message = new MessageText(this);
 		this.TryToStartMainActivity();
 	}
 
@@ -71,8 +72,8 @@ public class LoginActivity extends Activity {
 			this.prefs.setAuthToken(token);
 			this.TryToStartMainActivity();
 		} else {
-			String message = String.format(getString(R.string.login_failed), user);
-			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+			String msg = String.format(getString(R.string.login_failed), user);
+			this.message.Show(msg);
 		}
 	}
 }
