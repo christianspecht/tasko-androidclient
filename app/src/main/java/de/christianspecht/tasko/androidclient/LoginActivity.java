@@ -65,15 +65,22 @@ public class LoginActivity extends Activity {
 		EditText passText = (EditText)findViewById(R.id.login_password);
 		String pass = passText.getText().toString();
 
-		Authenticator auth = new Authenticator(this);
-		String token = auth.Authenticate(user, pass);
+		if (user.equals("") || pass.equals("")) {
 
-		if (!token.equals("")) {
-			this.prefs.setAuthToken(token);
-			this.TryToStartMainActivity();
+			this.message.Show(getString(R.string.login_empty));
+
 		} else {
-			String msg = String.format(getString(R.string.login_failed), user);
-			this.message.Show(msg);
+
+			Authenticator auth = new Authenticator(this);
+			String token = auth.Authenticate(user, pass);
+
+			if (!token.equals("")) {
+				this.prefs.setAuthToken(token);
+				this.TryToStartMainActivity();
+			} else {
+				String msg = String.format(getString(R.string.login_failed), user);
+				this.message.Show(msg);
+			}
 		}
 	}
 }

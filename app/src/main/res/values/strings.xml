@@ -20,5 +20,6 @@
     <string name="login_user">User Name</string>
     <string name="login_password">Password</string>
     <string name="login_failed">Login failed for user "%s"</string>
+    <string name="login_empty">User and password must be filled!</string>
 
 </resources>
