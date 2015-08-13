@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.EditText;
 
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity implements AuthenticatorResponse {
 
 	private Prefs prefs;
 	private MessageText message;
+	private String user;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +72,19 @@ public class LoginActivity extends Activity {
 
 		} else {
 
-			Authenticator auth = new Authenticator(this);
-			String token = auth.Authenticate(user, pass);
+			this.user = user;
+			new Authenticator(user, pass, this).Authenticate();
+		}
+	}
 
-			if (!token.equals("")) {
-				this.prefs.setAuthToken(token);
-				this.TryToStartMainActivity();
-			} else {
-				String msg = String.format(getString(R.string.login_failed), user);
-				this.message.Show(msg);
-			}
+	@Override
+	public void processToken(String token) {
+		if (!token.equals("")) {
+			this.prefs.setAuthToken(token);
+			this.TryToStartMainActivity();
+		} else {
+			String msg = String.format(getString(R.string.login_failed), this.user);
+			this.message.Show(msg);
 		}
 	}
 }
