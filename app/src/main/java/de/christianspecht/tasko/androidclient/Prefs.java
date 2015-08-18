@@ -30,4 +30,12 @@ public class Prefs {
 	public void setAuthToken(String token) {
 		this.pref.edit().putString("AuthToken", token).commit();
 	}
+
+	/**
+	 * Loads server URL from the preferences
+	 * @return The URL
+	 */
+	public String getServerUrl() {
+		return this.pref.getString("settings_url", "");
+	}
 }
