@@ -1,5 +1,6 @@
 package de.christianspecht.tasko.androidclient;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 /**
@@ -7,6 +8,7 @@ import android.os.AsyncTask;
  */
 public class Authenticator extends AsyncTask<String, Void, String> {
 
+	private Context context;
 	private String user;
 	private String pass;
 	private AuthenticatorResponse delegate;
@@ -17,14 +19,16 @@ public class Authenticator extends AsyncTask<String, Void, String> {
 	 * @param pass The password
 	 * @param delegate The delegate to call when authentication is finished
 	 */
-	public Authenticator(String user, String pass, AuthenticatorResponse delegate){
+	public Authenticator(Context context, String user, String pass, AuthenticatorResponse delegate){
+		this.context = context;
 		this.user = user;
 		this.pass = pass;
 		this.delegate = delegate;
 	}
 
 	public void Authenticate(){
-		this.execute("url");
+		String url = new UrlBuilder(this.context).Build("token");
+		this.execute(url);
 	}
 
 	@Override

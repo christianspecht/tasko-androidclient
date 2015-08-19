@@ -73,7 +73,7 @@ public class LoginActivity extends Activity implements AuthenticatorResponse {
 		} else {
 
 			this.user = user;
-			new Authenticator(user, pass, this).Authenticate();
+			new Authenticator(this, user, pass, this).Authenticate();
 		}
 	}
 
