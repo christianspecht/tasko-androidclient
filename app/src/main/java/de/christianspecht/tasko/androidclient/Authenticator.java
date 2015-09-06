@@ -75,7 +75,10 @@ public class Authenticator extends AsyncTask<String, Void, String> {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally {
-			urlConnection.disconnect();
+			if (urlConnection != null) {
+				urlConnection.disconnect();
+			}
+
 		}
 
 		// get token from JSON
