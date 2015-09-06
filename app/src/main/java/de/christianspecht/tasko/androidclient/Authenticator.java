@@ -62,15 +62,20 @@ public class Authenticator extends AsyncTask<String, Void, String> {
 			urlConnection.setRequestProperty("Authorization", auth2);
 			urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
 
-			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			StringBuilder result = new StringBuilder();
-			String line;
-			while ((line = reader.readLine()) != null) {
-				result.append(line);
-			}
+			int httpStatusCode = urlConnection.getResponseCode();
+			if (httpStatusCode == urlConnection.HTTP_OK) {
 
-			json = result.toString();
+				InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+				BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+				StringBuilder result = new StringBuilder();
+				String line;
+				while ((line = reader.readLine()) != null) {
+					result.append(line);
+				}
+
+				json = result.toString();
+			}
 
 		} catch(Exception e){
 			e.printStackTrace();
