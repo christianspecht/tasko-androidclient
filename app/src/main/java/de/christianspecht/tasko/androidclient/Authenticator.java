@@ -4,12 +4,19 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Base64;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import de.christianspecht.tasko.androidclient.api.TokenResponse;
 
 /**
  * Helper class for authentication
@@ -71,12 +78,26 @@ public class Authenticator extends AsyncTask<String, Void, String> {
 			urlConnection.disconnect();
 		}
 
-		// TODO: get token from JSON
-		if (this.user.equals("test")){
-			return "token";
+		// get token from JSON
+		String token = "";
+
+		if (!json.equals("")) {
+
+			GsonBuilder gsonb = new GsonBuilder();
+			Gson gson = gsonb.create();
+
+			try {
+				JSONObject j = new JSONObject(json);
+				TokenResponse tokenr = gson.fromJson(j.toString(), TokenResponse.class);
+				if (tokenr != null) {
+					token = tokenr.access_token;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
-		return "";
+		return token;
 	}
 
 	@Override
