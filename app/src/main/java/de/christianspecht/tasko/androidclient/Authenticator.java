@@ -14,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URL;
 
 import de.christianspecht.tasko.androidclient.api.TokenResponse;
 
@@ -53,8 +52,9 @@ public class Authenticator extends AsyncTask<String, Void, String> {
 		String json = "";
 
 		try {
-			URL url = new URL(urls[0]);
-			urlConnection = (HttpURLConnection)url.openConnection();
+
+			URLConnectionFactory factory = new URLConnectionFactory();
+			urlConnection = factory.GetConnection(urls[0]);
 			urlConnection.setRequestMethod("GET");
 
 			String auth1 = this.user + ":" + this.pass;
