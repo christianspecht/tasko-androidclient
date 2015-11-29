@@ -3,6 +3,13 @@ package de.christianspecht.tasko.androidclient;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+
 /**
  * Make requests to the Tasko API
  */
@@ -36,12 +43,51 @@ public class ApiRequest extends AsyncTask<ApiRequestRequest, Void, ApiRequestRes
 	@Override
 	protected ApiRequestResult doInBackground(ApiRequestRequest... apiRequestRequests) {
 
-		ApiRequestRequest request = apiRequestRequests[0];
+		ApiRequestResult apiResult = new ApiRequestResult();
+		HttpURLConnection urlConnection = null;
 
-		// TODO: HTTP request
-		ApiRequestResult result = new ApiRequestResult();
-		result.json = request.json;
-		return result;
+		try {
+			ApiRequestRequest request = apiRequestRequests[0];
+
+			URLConnectionFactory factory = new URLConnectionFactory();
+			urlConnection = factory.GetConnection(request.url);
+			urlConnection.setRequestMethod(request.requestMethod);
+
+			String auth = "Session " + this.token;
+			urlConnection.setRequestProperty("Authorization", auth);
+			urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+
+			if (request.requestMethod == "POST" && !request.json.equals("")){
+				urlConnection.setDoOutput(true);
+				urlConnection.setChunkedStreamingMode(0);
+				byte[] outputBytes = request.json.getBytes("UTF-8");
+				OutputStream os = urlConnection.getOutputStream();
+				os.write(outputBytes);
+			}
+
+			apiResult.httpStatusCode = urlConnection.getResponseCode();
+
+			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			StringBuilder result = new StringBuilder();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				result.append(line);
+			}
+
+			apiResult.json = result.toString();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			if (urlConnection != null) {
+				urlConnection.disconnect();
+			}
+		}
+
+		return apiResult;
 	}
 
 	@Override
