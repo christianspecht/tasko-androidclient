@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements ApiRequestCallback {
 
 	private static boolean StartupFinished;
 	private MessageText message;
@@ -24,7 +24,9 @@ public class MainActivity extends Activity {
 	}
 
 	public void LoadTasks() {
-		this.message.Show("load tasks here");
+		String url = new UrlBuilder(this).Build("tasks/search");
+		ApiRequest request = new ApiRequest(this, this);
+		request.POST(url, "{}");
 	}
 
 
@@ -48,5 +50,9 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	@Override
+	public void processResponse(ApiRequestResult result) {
+		this.message.Show(result.json);
+	}
     
 }
