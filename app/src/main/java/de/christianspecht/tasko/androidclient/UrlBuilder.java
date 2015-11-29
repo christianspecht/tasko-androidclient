@@ -25,7 +25,7 @@ public class UrlBuilder {
 		builder.path("api");
 
 		// append new path
-		builder.appendPath(path);
+		builder.appendEncodedPath(path);
 		return builder.build().toString();
 	}
 }
